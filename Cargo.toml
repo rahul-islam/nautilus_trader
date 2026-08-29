@@ -13,6 +13,7 @@ members = [
   "crates/adapters/deribit",
   "crates/adapters/derive",
   "crates/adapters/dydx",
+  "crates/adapters/groww",
   "crates/adapters/hyperliquid",
   "crates/adapters/interactive_brokers",
   "crates/adapters/kraken",
@@ -108,6 +109,7 @@ nautilus-databento = { path = "crates/adapters/databento", version = "0.63.0", d
 nautilus-deribit = { path = "crates/adapters/deribit", version = "0.63.0", default-features = false }
 nautilus-derive = { path = "crates/adapters/derive", version = "0.63.0", default-features = false }
 nautilus-dydx = { path = "crates/adapters/dydx", version = "0.63.0", default-features = false }
+nautilus-groww = { path = "crates/adapters/groww", version = "0.63.0", default-features = false }
 nautilus-hyperliquid = { path = "crates/adapters/hyperliquid", version = "0.63.0", default-features = false }
 nautilus-interactive-brokers = { path = "crates/adapters/interactive_brokers", version = "0.63.0" }
 nautilus-kraken = { path = "crates/adapters/kraken", version = "0.63.0", default-features = false }
@@ -218,6 +220,10 @@ pyo3-async-runtimes = { version = "0.29.0", default-features = false, features =
 pyo3-stub-gen = { version = "=0.20.0", default-features = false, features = [
   "rust_decimal",
 ] }
+prost = { version = "0.14.2", default-features = false, features = [
+  "derive",
+  "std",
+] }
 rand = { version = "0.10.2", default-features = false, features = [
   "std",
   "thread_rng",
@@ -299,6 +305,7 @@ tokio-rustls = "0.26.4"
 tokio-tungstenite = { version = "0.30.0", features = [
   "rustls-tls-webpki-roots",
 ] }
+sha2 = { version = "0.10.9", default-features = false, features = ["std"] }
 tokio-util = { version = "0.7.19", default-features = false, features = ["io"] }
 toml = { version = "1.1.4", default-features = false, features = [
   "parse",

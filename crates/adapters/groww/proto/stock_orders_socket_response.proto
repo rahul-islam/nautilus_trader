@@ -1,0 +1,164 @@
+// Recovered from the descriptors embedded in the `growwapi` Python package
+// (`growwapi/groww/proto/stock_orders_socket_response_pb2.py`). Field numbers are verbatim
+// from the descriptor; the enum wrapper messages mirror the venue's own nesting.
+
+syntax = "proto3";
+
+package groww.stocks.orders;
+
+message StocksAmoStatus {
+  enum Enum {
+    NA = 0;
+    PENDING = 1;
+    DISPATCHED = 2;
+    PARKED = 3;
+    PLACED = 4;
+    FAILED = 5;
+    MARKET = 6;
+  }
+}
+
+message StocksOrderStatus {
+  enum Enum {
+    NEW = 0;
+    ACKED = 1;
+    TRIGGER_PENDING = 2;
+    APPROVED = 3;
+    REJECTED = 4;
+    FAILED = 5;
+    EXECUTED = 6;
+    DELIVERY_AWAITED = 7;
+    CANCELLED = 8;
+    CANCELLATION_REQUESTED = 9;
+    MODIFICATION_REQUESTED = 10;
+    COMPLETED = 11;
+  }
+}
+
+message StocksOrderDuration {
+  enum Enum {
+    IOC = 0;
+    DAY = 1;
+    GTD = 2;
+    GTC = 3;
+    EOS = 4;
+  }
+}
+
+message StockExchange {
+  enum Enum {
+    BSE = 0;
+    NSE = 1;
+    MCX = 2;
+    MCXSX = 3;
+    NCDEX = 4;
+    US = 5;
+  }
+}
+
+message StockSegment {
+  enum Enum {
+    CASH = 0;
+    FNO = 1;
+    CURRENCY = 2;
+    COMMODITY = 3;
+  }
+}
+
+message StocksProduct {
+  enum Enum {
+    CNC = 0;
+    MIS = 1;
+    CO = 2;
+    BO = 3;
+    NRML = 4;
+    ARB = 5;
+    MTF = 6;
+  }
+}
+
+message StocksOrderType {
+  enum Enum {
+    MKT = 0;
+    L = 1;
+    SL = 2;
+    SL_M = 3;
+  }
+}
+
+message StocksTransactionType {
+  enum Enum {
+    INTERNAL = 0;
+    PENDING = 1;
+    BONUS = 2;
+    BSE_BOLT = 3;
+    NSE_NOW = 4;
+    IPO = 5;
+    DEMAT_TRANSFER = 6;
+    NEST_TERMINAL = 7;
+    EXCHANGE_SHORT = 8;
+    AUCTION = 9;
+    INTERNAL_SHORT = 10;
+    MERGER = 11;
+    FNO = 12;
+    BUY_BACK = 13;
+    PHYSICAL_SETTLEMENT = 14;
+  }
+}
+
+message StocksBuySell {
+  enum Enum {
+    B = 0;
+    S = 1;
+  }
+}
+
+message StocksTradeStatus {
+  enum Enum {
+    EXECUTED = 0;
+    DELIVERY_AWAITED = 1;
+    COMPLETED = 2;
+    CANCELLED = 3;
+  }
+}
+
+message OrderSource {
+  enum Enum {
+    USER = 0;
+    SYSTEM = 1;
+    SMALLCASE = 2;
+    SMARTORDER = 3;
+    NA = 4;
+  }
+}
+
+message StageAndTimeStamp {
+  double time_stamp_from_mid_night = 1;
+  string stage_name = 2;
+}
+
+message OrderDetailsBroadCastDto {
+  repeated StageAndTimeStamp stage_and_time_stamp = 1;
+  OrderDetailUpdateDto order_detail_update_dto = 2;
+}
+
+message OrderDetailUpdateDto {
+  int32 qty = 1;
+  int64 price = 2;
+  int64 trigger_price = 3;
+  int32 filled_qty = 4;
+  int32 remaining_qty = 5;
+  int64 avg_fill_price = 6;
+  string groww_order_id = 7;
+  string exchange_order_id = 8;
+  StocksOrderStatus.Enum order_status = 9;
+  StocksOrderDuration.Enum duration = 10;
+  StockExchange.Enum exchange = 11;
+  StockSegment.Enum segment = 12;
+  StocksProduct.Enum product = 13;
+  StocksOrderType.Enum order_type = 14;
+  StocksBuySell.Enum buy_sell = 15;
+  string remark = 16;
+  string contract_id = 22;
+  string gui_order_id = 23;
+}

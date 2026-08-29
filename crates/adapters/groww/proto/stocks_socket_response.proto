@@ -1,0 +1,73 @@
+// Recovered from the descriptors embedded in the `growwapi` Python package
+// (`growwapi/groww/proto/stocks_socket_response_pb2.py`), which Groww publishes without
+// the original `.proto` sources. Field numbers and names are taken verbatim from the
+// descriptor, so the wire format matches what the venue emits.
+
+syntax = "proto3";
+
+package stocks_data.response;
+
+enum StockExchangeProto {
+  BSE = 0;
+  NSE = 1;
+  MCX = 2;
+  MCXSX = 3;
+  NCDEX = 4;
+  GLOBAL = 5;
+  US = 6;
+}
+
+enum StockSegmentProto {
+  CASH = 0;
+  FNO = 1;
+  CURRENCY = 2;
+  COMMODITY = 3;
+}
+
+message BookProto {
+  double price = 1;
+  double qty = 2;
+}
+
+message StocksLivePriceProto {
+  double ts_in_millis = 1;
+  double open = 2;
+  double high = 3;
+  double low = 4;
+  double close = 5;
+  double volume = 6;
+  double value = 7;
+  double bid_qty = 8;
+  double offer_qty = 9;
+  double avg_price = 10;
+  double high_price_range = 11;
+  double low_price_range = 12;
+  double ltp = 13;
+  double open_interest = 14;
+  double low_trade_range = 15;
+  double high_trade_range = 16;
+}
+
+message StocksLiveIndicesProto {
+  double ts_in_millis = 1;
+  double value = 2;
+}
+
+message StocksMarketDepthProto {
+  double ts_in_millis = 1;
+  map<int32, BookProto> buy_book = 2;
+  map<int32, BookProto> sell_book = 3;
+}
+
+message StocksSocketResponseProtoDto {
+  string symbol = 1;
+  StockSegmentProto segment = 2;
+  StockExchangeProto exchange = 3;
+  StocksLivePriceProto stock_live_price = 4;
+  StocksMarketDepthProto stocks_market_depth = 5;
+  StocksLiveIndicesProto stocks_live_indices = 6;
+}
+
+message StocksMarketInfoProto {
+  string message = 1;
+}

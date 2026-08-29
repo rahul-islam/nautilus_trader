@@ -1,0 +1,82 @@
+// Recovered from the descriptors embedded in the `growwapi` Python package
+// (`growwapi/groww/proto/position_socket_pb2.py`). Field numbers are verbatim from the
+// descriptor.
+
+syntax = "proto3";
+
+package groww.protobuf.fno.dto.fno_data;
+
+enum StocksProduct {
+  CNC = 0;
+  MIS = 1;
+  CO = 2;
+  BO = 3;
+  NRML = 4;
+  ARB = 5;
+  MTF = 6;
+  UNKNOWN = 7;
+}
+
+enum EquityType {
+  STOCKS = 0;
+  FUTURE = 1;
+  OPTION = 2;
+  ETF = 3;
+  INDEX = 4;
+  BONDS = 5;
+}
+
+enum EquityAsset {
+  EQUITY_ASSET_STOCKS = 0;
+  EQUITY_ASSET_INDICES = 1;
+}
+
+enum StockExchange {
+  BSE = 0;
+  NSE = 1;
+  MCX = 2;
+  MCXSX = 3;
+  NCDEX = 4;
+  GLOBAL = 5;
+  US = 6;
+}
+
+message PositionDetailProto {
+  SymbolInfoProto symbol_data = 1;
+  PositionInfoProto position_info = 2;
+}
+
+message SymbolInfoProto {
+  int64 tr_time_stamp = 1;
+  string search_id = 2;
+  StocksProduct stocks_product = 3;
+  string contract_id = 4;
+  EquityType equity_type = 5;
+  string display_name = 6;
+  string underlying_id = 7;
+  int64 nse_market_lot = 8;
+  int64 bse_market_lot = 9;
+  EquityAsset underlying_asset_type = 10;
+  int64 freeze_qty = 11;
+  StockExchange exchange = 12;
+}
+
+message PositionInfoProto {
+  string symbol_isin = 1;
+  BseProto BSE = 2;
+  NseProto NSE = 3;
+}
+
+message BseProto {
+  double credit_qty = 1;
+  double credit_price = 2;
+  double debit_qty = 3;
+  double debit_price = 4;
+}
+
+message NseProto {
+  double credit_qty = 1;
+  double credit_price = 2;
+  double debit_qty = 3;
+  double debit_price = 4;
+}
